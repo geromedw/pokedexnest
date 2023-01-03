@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { allowedNodeEnvironmentFlags } from 'process';
 import { PokedexService } from 'src/pokedex/pokedex.service';
 import Pokemon from 'types';
 
@@ -32,5 +33,11 @@ export class PokemonController {
     @Delete(':id')
     deletepokemon(@Param('id') id : string){
         return this.pokedex.deletepokemon(id)
+    }
+
+    @Delete('all')
+    deleteall(@Param('clear') all:string){
+        console.log("all")
+        return this.pokedex.cleardatabase()
     }
 }
